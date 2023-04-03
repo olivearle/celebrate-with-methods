@@ -9,12 +9,25 @@ const learning = {
   learningGoals: [
     "Understand programming fundamentals",
     "Have Fun",
-    "Build JS programs"
+    "Build JS programs",
   ],
   category: "Front End Development",
   topicImportance: "high",
   hoursThisWeek: 2,
-  weeklyHourGoal: 7
+  weeklyHourGoal: 7,
+  achievedStudyGoal: false,
+  addStudyTime: function (hours) {
+    this.hoursThisWeek += hours;
+    if (this.hoursThisWeek >= this.weeklyHourGoal) {
+      this.achievedStudyGoal = true;
+      this.celebrate();
+    }
+  },
+  celebrate: function () {
+    body.classList.add("celebrate");
+    success.classList.remove("hide");
+    dance.classList.remove("hide");
+  },
 };
 
 topicElement.innerText = `✔️ I'm learning ${learning.topic}.`;
@@ -22,3 +35,5 @@ countElement.innerText = `✔️ I have ${learning.learningGoals.length} learnin
 
 topicElement.classList.remove("hide");
 countElement.classList.remove("hide");
+
+learning.addStudyTime(15);
